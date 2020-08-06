@@ -1,7 +1,7 @@
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
-const session = require("express-session");
+//const session = require("express-session");
 //const knexSessionStore = require("connect-session-knex")(session);
 const jwt = require("jsonwebtoken");
 const restricted = require("../auth/restricted-middleware.js");
@@ -11,31 +11,31 @@ const usersRouter = require("../users/users-router.js");
 
 const server = express();
 
-const sessionConfig = {
-  name: "tzsession",
-  secret: "myspeshulsecret",
-  cookie: {
-    maxAge: 1000 * 60 * 60,
-    secure: false, // should be true in production
-    httpOnly: true,
-  },
-  resave: false,
-  saveUninitialized: false,
+// const sessionConfig = {
+//   name: "tzsession",
+//   secret: "myspeshulsecret",
+//   cookie: {
+//     maxAge: 1000 * 60 * 60,
+//     secure: false, // should be true in production
+//     httpOnly: true,
+//   },
+//   resave: false,
+//   saveUninitialized: false,
 
-  //now session will be created in our db, not in a memory
-  //   store: new knexSessionStore({
-  //     knex: require("../database/connection.js"),
-  //     tablename: "sessions",
-  //     sidfieldname: "sid",
-  //     createtable: true,
-  //     clearInterval: 1000 * 60 * 60,
-  //   }),
-};
+//   //now session will be created in our db, not in a memory
+//   //   store: new knexSessionStore({
+//   //     knex: require("../database/connection.js"),
+//   //     tablename: "sessions",
+//   //     sidfieldname: "sid",
+//   //     createtable: true,
+//   //     clearInterval: 1000 * 60 * 60,
+//   //   }),
+// };
 
 server.use(helmet());
 server.use(express.json());
 server.use(cors());
-server.use(session(sessionConfig));
+//server.use(session(sessionConfig));
 server.use("/api/auth", authRouter);
 server.use(
   "/api/users",

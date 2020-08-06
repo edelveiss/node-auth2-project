@@ -65,20 +65,20 @@ router.post("/login", (req, res) => {
     });
   }
 });
-// router.get('/logout', function(req, res) {
-//     res.status(200).json({ GoodBye: 'GoodBye' });
-//   });
-router.get("/logout", (req, res) => {
-  if (req.session) {
-    req.session.destroy((err) => {
-      if (err) {
-        res.status(500).json({ errorMessage: "Failed to logout" });
-      } else {
-        res.status(200).json({ message: "Successfully logged out" });
-      }
-    });
-  }
+router.get("/logout", function (req, res) {
+  res.status(200).json({ GoodBye: "GoodBye" });
 });
+// router.get("/logout", (req, res) => {
+//   if (req.session) {
+//     req.session.destroy((err) => {
+//       if (err) {
+//         res.status(500).json({ errorMessage: "Failed to logout" });
+//       } else {
+//         res.status(200).json({ message: "Successfully logged out" });
+//       }
+//     });
+//   }
+// });
 //----------------------------------------------------------------------------//
 // This is a helper method that helps us stay DRY (we generate tokens in both
 // the POST /api/auth/register handler, and the POST /ap/auth/login handler).
